@@ -171,6 +171,8 @@ const main = () => {
         for (const point of pointGroup.children) {
             if (point instanceof THREE.Mesh)
                 point.geometry.dispose();
+            else if (point instanceof THREE.Line)
+                point.geometry.dispose();
         }
         pointGroup.children = [];
 

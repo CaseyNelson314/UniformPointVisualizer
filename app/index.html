@@ -3,18 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/eto_tatsu_banzai.png">
     <title>UniformPointVisualizer</title>
   </head>
   <body>
     <script type="module" src="main.ts"></script>
     <div class="setting">
-      <label for="point_count">
-        N = 
-        <input type="number" id="point_count_number_input" />
-        <input type="range" id="point_count_slider" max="1000" />
-      </label>
+      <label for="point_count"> N = </label>
+      <input type="number" id="point_count_number_input" min="1" max="1000" />
+      <input
+        type="range"
+        id="point_count_slider"
+        min="1"
+        max="1000"
+        value="100"
+      />
     </div>
     <div id="canvas"></div>
+    <a class="web_site_icon" href="https://github.com/CaseyNelson314/UniformPointVisualizer">
+      <img src="assets/github.png" alt="github" width="50" height="50" />
+    </a>
   </body>
 </html>

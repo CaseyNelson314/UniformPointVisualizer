@@ -8,6 +8,11 @@
 .setting {
   height: 40px;
   padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
 }
 
 #canvas {
@@ -18,11 +23,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
-  gap: 10px;
+  flex-direction: column;
   color: white;
   font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
+  font-size: 23px;
+  white-space: nowrap;
 }
 
 input[type="number"] {
@@ -37,7 +42,7 @@ input[type="number"] {
 }
 
 input[type="range"] {
-  width: 200px;
+  width: 250px;
   height: auto;
 }
 
@@ -49,4 +54,20 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+
+.web_site_icon {
+  position: fixed;
+  opacity: 0.7;
+  top: 10px;
+  left: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
