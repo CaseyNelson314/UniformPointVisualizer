@@ -40,8 +40,8 @@ export const GSS = (n: number): THREE.Vector3[] => {
         vectors.push(new THREE.Vector3(x, y, z));
     }
 
-    if (n >= 7) {
-        // 極の点の補正
+    if (n > 20) {
+        // 極の点の補正 点の数が少ないとき、補正すると一様性が損なわれる。
         // https://www.jstage.jst.go.jp/article/geoinformatics/12/1/12_1_3/_pdf/-char/ja
         // 極の2点は一様性が損なわれるので、極を囲む点の平均から求める。
         vectors[0] = new THREE.Vector3()
