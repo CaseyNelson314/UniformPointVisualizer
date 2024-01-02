@@ -8,7 +8,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 const GSS = (n: number, functor: (vector: THREE.Vector3) => void) => {
 
     // 一般化螺旋集合を用いた球面上の点の一様分布
-    // 参考論文: https://www.jstage.jst.go.jp/article/geoinformatics/12/1/12_1_3/_pdf/-char/ja
+    // 参考論文: https://perswww.kuleuven.be/~u0017946/publications/Papers97/art97a-Saff-Kuijlaars-MI/Saff-Kuijlaars-MathIntel97.pdf
 
     if (n < 1) return;
 
@@ -20,13 +20,13 @@ const GSS = (n: number, functor: (vector: THREE.Vector3) => void) => {
     let phi = 0;
     for (let k = 1; k <= n; k++) {
 
-        // 2.4 式(1)より パラメータ h_k を算出
+        // P.10 式(8)より パラメータ h_k を算出
         const h = -1 + 2 * (k - 1) / (n - 1);
 
-        // 2.4 式(2)より パラメータ theta_k を算出
+        // 式(8)より パラメータ theta_k を算出
         const theta = Math.acos(h);
 
-        // 2.4 式(3)より パラメータ phi_k を算出
+        // 式(8)より パラメータ phi_k を算出
         if (h * h === 1)
             phi = 0;  // ゼロ除算対策
         else
