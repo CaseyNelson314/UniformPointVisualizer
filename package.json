@@ -4,7 +4,8 @@
   "description": "",
   "main": "app/main.ts",
   "scripts": {
-    "dev": "cd app && vite"
+    "dev": "cd app && vite",
+    "build": "cd app && vite build --base ./"
   },
   "author": "",
   "license": "ISC",

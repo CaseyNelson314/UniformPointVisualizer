@@ -2,7 +2,9 @@ import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 
-// 球面上に点を一様分布する正規ベクトルを生成し、コールバック関数に渡す
+/// 一般化螺旋集合を用いて、球面上に点を一様分布する正規ベクトルを生成し、コールバック関数に渡す
+/// @param n 点の数
+/// @param functor コールバック関数
 const GSS = (n: number, functor: (vector: THREE.Vector3) => void) => {
 
     // 一般化螺旋集合を用いた球面上の点の一様分布
@@ -59,6 +61,19 @@ const main = () => {
     const camera = new THREE.PerspectiveCamera(75, dom.offsetWidth / dom.offsetHeight, 0.1, 1000);
     camera.position.set(1, 1.5, 1);
     scene.add(camera);
+    
+
+    // リサイズ処理
+    const resizeObserver = new ResizeObserver((entries) => {
+        if (entries.length === 0) {
+            return;
+        }
+        const { width, height } = entries[0]!.contentRect;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
+    resizeObserver.observe(dom);
 
 
     // カメラコントローラー
@@ -76,8 +91,9 @@ const main = () => {
     scene.add(sphere);
 
 
+    // 点群
     const pointGroup = new THREE.Group();
-    const pointsUpdate = (n: number) => {
+    const updatePoints = (n: number) => {
 
         scene.remove(pointGroup);
 
@@ -112,22 +128,26 @@ const main = () => {
     };
 
 
-    // スライダー、入力ボックス同期
-    const slider = document.getElementById('point_count_slider') as HTMLInputElement;
-    const input = document.getElementById('point_count_number_input') as HTMLInputElement;
-
-    input.value = slider.value;
-    pointsUpdate(input.valueAsNumber);
-
-    slider.addEventListener('input', () => {
+    // スライダー、入力ボックス
+    {
+        const slider = document.getElementById('point_count_slider') as HTMLInputElement;
+        const input = document.getElementById('point_count_number_input') as HTMLInputElement;
+    
         input.value = slider.value;
-        pointsUpdate(input.valueAsNumber);
-    });
-    input.addEventListener('input', () => {
-        slider.value = input.value;
-        pointsUpdate(slider.valueAsNumber);
-    });
+        updatePoints(input.valueAsNumber);
+    
+        slider.addEventListener('input', () => {
+            input.value = slider.value;
+            updatePoints(input.valueAsNumber);
+        });
+        input.addEventListener('input', () => {
+            slider.value = input.value;
+            updatePoints(slider.valueAsNumber);
+        });
+    }
 
+
+    // メインループ
     const animate = () => {
 
         requestAnimationFrame(animate);
