@@ -4,23 +4,23 @@
 
 Visualization of uniformly distributed points on a sphere Web application.
 
-球面上に一様に分布された点の可視化 Web アプリケーション。
+球面上に一様に分布された点の可視化アプリケーション。
 
 ## Demo
 
 <https://caseynelson314.github.io/UniformPointVisualizer>
 
-![Animationsd](https://github.com/CaseyNelson314/UniformPointVisualizer/assets/91818705/f2260465-836e-493a-9c83-f69ca1389678)
+![Animationsd](https://github.com/CaseyNelson314/UniformPointVisualizer/assets/91818705/aebfa5fb-af61-4eb0-bb45-4c0d902bf31c)
 
 ## Description
 
-By placing points on a spiral on the sphere, a uniform and arbitrary number of points can be placed on the sphere. (Generalized Spiral Set)
+The points are uniformly distributed using the Generalized Spiral Set (GSS). This algorithm can place an arbitrary number of points on the sphere in a roughly uniform manner with a simple calculation.
 
-This algorithm was used to simulate the lines of electric force emitted from a point charge in three-dimensional space.
+This algorithm was used to simulate the lines of electric force emitted from a point charge in 3D space.
 
-球面上の螺旋に点を配置することで、球面上に一様かつ任意の個数の点を配置することができる。(一般化螺旋集合)
+一般化螺旋集合 (GSS) を用いて点を一様に分布させています。このアルゴリズムは、単純な計算で球面上におおよそ一様、かつ任意の個数の点を配置できます。
 
-点電荷から出る電気力線を、三次元空間でシミュレートする際にこのアルゴリズムを使用した。
+点電荷から出る電気力線を、三次元空間でシミュレートする際にこのアルゴリズムを使用しました。
 
 ## Local Execute
 
