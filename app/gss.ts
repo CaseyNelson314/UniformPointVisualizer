@@ -3,7 +3,6 @@ import * as THREE from "three";
 
 /// 一般化螺旋集合を用いて、球面上に点を一様分布する正規ベクトルの配列を生成する。
 /// @param n 点の数
-/// @param functor コールバック関数
 export const GSS = (n: number): THREE.Vector3[] => {
 
     if (n < 1) return [];
