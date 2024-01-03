@@ -9,7 +9,7 @@ export const GSS = (n: number): THREE.Vector3[] => {
 
 
     if (n === 1) {
-        return [];
+        return [new THREE.Vector3(0, 1, 0)];
     }
 
 

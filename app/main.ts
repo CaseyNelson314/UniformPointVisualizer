@@ -55,24 +55,18 @@ const main = () => {
 
     // 点群
     const pointGroup = new THREE.Group();
+    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const sphereGeometry = new THREE.SphereGeometry(0.02, 10, 10);
+
     const updatePoints = (n: number) => {
 
         scene.remove(pointGroup);
 
-        // ジオメトリ破棄
-        for (const point of pointGroup.children) {
-            if (point instanceof THREE.Mesh)
-                point.geometry.dispose();
-            else if (point instanceof THREE.Line)
-                point.geometry.dispose();
-        }
         pointGroup.children = [];
         
         // 点群を生成
         const points = GSS(n);
         
-        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const sphereGeometry = new THREE.SphereGeometry(0.02, 10, 10);
         points.forEach((vector) => {
             const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
             mesh.position.copy(vector);
