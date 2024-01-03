@@ -6,7 +6,7 @@ const main = () => {
 
     // シーン
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x38393b);
+    scene.background = new THREE.Color(0x2b2b2b);
 
 
     // レンダラー
