@@ -6,12 +6,14 @@ const main = () => {
 
     // シーン
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x2b2b2b);
+    scene.background = new THREE.Color(0x222222);
 
 
     // レンダラー
     const dom = document.getElementById('canvas')!;
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true
+    });
     renderer.setSize(dom.offsetWidth, dom.offsetHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     dom.appendChild(renderer.domElement);
@@ -46,7 +48,7 @@ const main = () => {
 
     // 球
     {
-        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x555555, transparent: true, opacity: 0.7 });
+        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.6, side: THREE.DoubleSide });
         const sphereGeometry = new THREE.SphereGeometry(1, 40, 40);
         const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
         scene.add(sphere);
@@ -56,28 +58,32 @@ const main = () => {
     // 点群
     const pointGroup = new THREE.Group();
     const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    const sphereGeometry = new THREE.SphereGeometry(0.02, 10, 10);
+    const sphereGeometry = new THREE.SphereGeometry(0.02, 30, 30);
 
     const updatePoints = (n: number) => {
 
         scene.remove(pointGroup);
 
         pointGroup.children = [];
-        
+
         // 点群を生成
         const points = GSS(n);
-        
-        points.forEach((vector) => {
+
+
+        // 電群を示す球を生成
+        for (const point of points) {
             const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
-            mesh.position.copy(vector);
+            mesh.position.copy(point);
             pointGroup.add(mesh);
-        });
+        }
+
 
         // 点群を結ぶ
         const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
-        const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+        const lineGeometry = new THREE.BufferGeometry().setFromPoints(points.map(p => p.multiplyScalar(0.99)));  // 球との重なりを防ぐために少し内側にする
         const line = new THREE.Line(lineGeometry, lineMaterial);
         pointGroup.add(line);
+
 
         scene.add(pointGroup);
     };
